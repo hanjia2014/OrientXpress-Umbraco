@@ -1,0 +1,26 @@
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Thursday, 7 July 2016 4:20:05 PM
+   Source : C:\Projects\OrientXpress-Umbraco\OrientXpress-Umbraco\Umbraco_Client\
+     Dest : C:\Projects\OrientXpress-Umbraco\OrientXpress-Umbraco\App_Data\NuGetBackup\20160707-161954\Umbraco_Client\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   0	C:\Projects\OrientXpress-Umbraco\OrientXpress-Umbraco\Umbraco_Client\
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         0         1         0         0         0
+   Files :         0         0         0         0         0         0
+   Bytes :         0         0         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+   Ended : Thursday, 7 July 2016 4:20:05 PM
+

@@ -46,6 +46,10 @@ export class AppComponent {
         event.Truncate = trimmedString + "...";
     }
 
+    clearSelectedEvent = () => {
+        this.selectedEvent = null;
+    }
+
     public constructor(private eventService: EventService) {
 
     }

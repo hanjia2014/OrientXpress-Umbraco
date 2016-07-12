@@ -13,6 +13,9 @@ namespace OrientXpress.App_Start
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jquerychocolat").Include(
+                        "~/Scripts/jquery.chocolat.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
@@ -32,7 +35,8 @@ namespace OrientXpress.App_Start
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/chocolat.css",
-                      "~/Content/style.css"));
+                      "~/Content/style.css",
+                      "~/Content/chocolat.css"));
 
 
         }

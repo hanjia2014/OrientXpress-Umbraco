@@ -1,4 +1,5 @@
-﻿@using OrientXpress_Umbraco.Models;
+﻿@using System.Web.Optimization
+@using OrientXpress_Umbraco.Models;
 @using Newtonsoft.Json;
 @inherits UmbracoTemplatePage
 @using ContentModels = Umbraco.Web.PublishedContentModels;
@@ -25,6 +26,20 @@
         eventsJson = JsonConvert.SerializeObject(events);
     }
 }
+
+@Scripts.Render("~/bundles/ox-app")
+
+<script type="text/javascript">
+        System.import('app').catch(function (err) { console.error(err); });
+
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+</script>
+
 <!--program start here-->
 <div class="program">
     <div class="container">

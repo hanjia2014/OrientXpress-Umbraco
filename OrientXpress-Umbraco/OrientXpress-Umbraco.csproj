@@ -340,6 +340,9 @@
     <Content Include="ox-app\event-summary.html" />
     <Content Include="packages.config" />
     <Content Include="App_Plugins\ModelsBuilder\package.manifest" />
+    <Content Include="Scripts\easing.js" />
+    <Content Include="Scripts\jquery.chocolat.js" />
+    <Content Include="Scripts\move-top.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Partials\Grid\Editors\Textstring.cshtml" />
     <Content Include="Views\Partials\Grid\Editors\Rte.cshtml" />
@@ -371,6 +374,7 @@
     <Content Include="fonts\JockeyOne-Regular.ttf" />
     <Content Include="fonts\Roboto-Regular.ttf" />
     <Content Include="Views\LandingPage.cshtml" />
+    <Content Include="Views\Gallery.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

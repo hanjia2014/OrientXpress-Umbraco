@@ -13,6 +13,9 @@
     }
 }
 
+<script src="~/Scripts/site/jquery-1.11.0.min.js"></script>
+<script src="~/Scripts/site/jquery.chocolat.js"></script>
+<link href="~/Content/chocolat.css" rel="stylesheet" />
 <!--gallery start here-->
 <div class="gallery">
     <div class="container">
@@ -41,7 +44,7 @@
 </div>
 <!--gallery  end here-->
 <script type="text/javascript" charset="utf-8">
-		$(function() {
-			$('.gallery-bottom a').Chocolat();
-		});
+		(function ($) {
+		    $('.gallery-bottom a').Chocolat();
+		})(jQuery);
 </script>

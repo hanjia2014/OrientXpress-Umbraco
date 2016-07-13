@@ -375,6 +375,10 @@
     <Content Include="fonts\Roboto-Regular.ttf" />
     <Content Include="Views\LandingPage.cshtml" />
     <Content Include="Views\Gallery.cshtml" />
+    <None Include="Properties\PublishProfiles\orientxpress - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\orientxpress - Web Deploy.pubxml" />
+    <Content Include="Views\Partials\_PartialMusician.cshtml" />
+    <Content Include="Views\About.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -475,7 +479,9 @@
     <Content Include="Scripts\site\jquery.chocolat.js" />
     <Content Include="Scripts\site\move-top.js" />
     <Content Include="systemjs.config.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Master.cshtml" />
     <Content Include="tsconfig.json" />
   </ItemGroup>
@@ -487,6 +493,7 @@
     <Compile Include="App_Start\UmbracoStandardOwinStartup.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Models\EventViewModel.cs" />
+    <Compile Include="Models\PartialIndex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

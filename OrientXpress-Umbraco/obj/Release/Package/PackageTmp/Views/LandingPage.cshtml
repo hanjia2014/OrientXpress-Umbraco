@@ -1,0 +1,110 @@
+﻿@using System.Web.Optimization
+@using OrientXpress_Umbraco.Models;
+@using Newtonsoft.Json;
+@inherits UmbracoTemplatePage
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+    Layout = "Master.cshtml";
+    ViewBag.Title = "Home Page";
+
+    var events = new List<EventViewModel>();
+    var children = CurrentPage.Site().Children;
+    var eventsJson = string.Empty;
+    if (children != null && children.Count() > 0)
+    {
+        foreach (var child in children)
+        {
+            if (child.DocumentTypeAlias == "event")
+            {
+                var title = child.GetPropertyValue<string>("title");
+                var date = child.GetPropertyValue<DateTime>("date");
+                var content = child.GetPropertyValue<string>("content");
+                events.Add(new EventViewModel { Title = title, Date = date, Content = "Test" });
+                events.OrderByDescending(p => p.Date);
+            }
+        }
+        eventsJson = JsonConvert.SerializeObject(events);
+    }
+}
+
+@Scripts.Render("~/bundles/ox-app")
+
+<script type="text/javascript">
+        System.import('app').catch(function (err) { console.error(err); });
+
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+</script>
+
+<!--program start here-->
+<div class="program">
+    <div class="container">
+        <div class="program-main">
+            <div class="program-bottom">
+                <div class="col-md-6 program-gridleft">
+                    <h4>Get to know us</h4>
+                    <div class="quoteation">
+                        <div class="music-icn"><span class="glyphicon glyphicon-music" aria-hidden="true"> </span></div>
+                        <div class="quote-text">
+                            <h5>Welcome</h5>
+                            <p>Welcome to the OrientXpress website. OrientXpress is a great Chinese and Western jazz band from Wellington, New Zealand. The band plays popular Chinese tunes like Ye Shanghai, Yue Liang Dai Biao Wo De Xin and Song Bie, including some Cantonese tunes like Shun Liu Ni Liu, Shi Qu De Nuo Yan and Ren Sheng He Chu Bu Xiang Feng.</p>
+                            <br />
+                            <p>
+                                OrientXpress also plays Western jazz tunes, like Blue Moon, Autumn Leaves, and Jambalaya. In this website, you can find out our news, activities and galleries.
+                            </p>
+                            <div class="program-btn">
+                                <a href="single.html">Read More</a>
+                            </div>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                </div>
+                <div class="col-md-6 program-gridright">
+                    <img src="~/images/logo.jpg" alt="" class="img-responsive">
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<!--program end here-->
+<!--singer start here-->
+<div class="singer">
+    <div class="container">
+        <div class="singer-main">
+            <div class="col-md-4 singer-left">
+                <a href="#"><img src="~/images/cd_cover.jpg" width="250" height="250"></a>
+            </div>
+            <div class="col-md-8 singer-right">
+                <h3>Lorem ipsum dolor sit amet</h3>
+                <h4>Duis aute irure dolor in reprehenderit</h4>
+                <h5>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h5>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas</p>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<!--info end here-->
+<!--music strip-->
+<div class="music-strip">
+    <div class="container">
+        <div class="music-strip-main">
+            <div class="col-md-9 music-strip-left">
+                <h3> Nam libero tempore cum soluta nobis</h3>
+                <h4> Itaque earum rerum hic tenetur a sapiente delectus ut aut reiciendis</h4>
+                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique</p>
+            </div>
+            <div class="col-md-3 music-strip-right">
+                <a href="single.html">Read More</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--music strip end here-->
+<ox-app>Loading...</ox-app>

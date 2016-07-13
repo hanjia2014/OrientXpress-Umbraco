@@ -40,8 +40,9 @@ textarea {
 }
 
 .modal-title {
-	margin-bottom: 10px;
-	line-height: 30px;
+    color: #f54785;
+    margin-bottom: 10px;
+    line-height: 30px;
 }
 
 .modal-body {

@@ -129,3 +129,4 @@ c:\Projects\OrientXpress-Umbraco\OrientXpress-Umbraco\bin\UmbracoExamine.xml
 c:\Projects\OrientXpress-Umbraco\OrientXpress-Umbraco\bin\WebApi.Hal.pdb
 c:\Projects\OrientXpress-Umbraco\OrientXpress-Umbraco\obj\Debug\OrientXpress-Umbraco.dll
 c:\Projects\OrientXpress-Umbraco\OrientXpress-Umbraco\obj\Debug\OrientXpress-Umbraco.pdb
+c:\Projects\OrientXpress-Umbraco\OrientXpress-Umbraco\obj\Debug\OrientXpress-Umbraco.csprojResolveAssemblyReference.cache

@@ -28,6 +28,9 @@ var AppComponent = (function () {
                 });
             }, function (err) { return _this.error = err; });
         };
+        this.clearSelectedEvent = function () {
+            _this.selectedEvent = null;
+        };
     }
     AppComponent.prototype.ngOnInit = function () {
         this.getEvents();

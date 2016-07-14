@@ -27,7 +27,17 @@
                 <h2 class="modal-title">{{selectedEvent.Title}}</h2>
             </div>
             <div class="modal-body">
-                <span><i class="glyphicon glyphicon-calendar"> </i>{{selectedEvent.Date | date:'shortTime'}}</span>
+                <div class="modal-date">
+                    <ul>
+                        <li>
+                            <span><i class="glyphicon glyphicon-calendar"> </i> {{selectedEvent.Date | date:'yyyy-MMM-dd'}}</span>
+                        </li>
+                        <li>
+                            <span><i class="glyphicon glyphicon-time"> </i> {{selectedEvent.Date | date:'shortTime'}}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
                 <p>{{selectedEvent.Content}}</p>
             </div>
             <div class="modal-footer">

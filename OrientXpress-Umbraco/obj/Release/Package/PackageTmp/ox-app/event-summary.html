@@ -9,6 +9,7 @@
                     <h4>{{event.Title}}</h4>
                     <p>{{event.Truncate}}</p>
                     <a data-toggle="modal" data-target="#eventModal" (click)="onSelect(event)" data-backdrop="static" data-keyboard="false">Read More</a>
+                    <div class="clearfix"> </div>
                 </div>
                 <div class="clearfix"> </div>
             </div>
@@ -26,7 +27,17 @@
                 <h2 class="modal-title">{{selectedEvent.Title}}</h2>
             </div>
             <div class="modal-body">
-                <h6>{{selectedEvent.Date | date:'shortTime'}}</h6>
+                <div class="modal-date">
+                    <ul>
+                        <li>
+                            <span><i class="glyphicon glyphicon-calendar"> </i> {{selectedEvent.Date | date:'yyyy-MMM-dd'}}</span>
+                        </li>
+                        <li>
+                            <span><i class="glyphicon glyphicon-time"> </i> {{selectedEvent.Date | date:'shortTime'}}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
                 <p>{{selectedEvent.Content}}</p>
             </div>
             <div class="modal-footer">

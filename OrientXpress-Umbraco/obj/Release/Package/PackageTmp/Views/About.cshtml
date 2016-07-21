@@ -1,0 +1,55 @@
+﻿@inherits UmbracoTemplatePage
+@using OrientXpress_Umbraco.Models;
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+    Layout = "Master.cshtml";
+
+    var children = CurrentPage.Site().Children;
+}
+
+<div class="about">
+    <div class="container">
+        <div class="about-left">
+            <h2>ABOUT</h2>
+            <div class="about-bottom">
+                <div class="col-md-7 about-grid">
+                    <h6><a>Meet our musicians</a></h6>
+                    <p>
+                        OrientXpress started in 2006 when Han Jia and Michael Bain performed duo saxes together at Chinese Language School end of term functions. In 2009, they were joined by Luo Hui on keyboard and clarinet, then by Wang Hui (Emma) on vocals later the same year, then by Fujio Kano in 2011.
+                        The group plays a selection of popular Chinese songs and western jazz, blues, and has performed at several public events and Chinese cultural events and house concert soirees in Wellington and charity concerts including the annual All Saints Concert at Otaki.
+                        To view detailed information of each our band member, please select from the list on right side of the page.
+                    </p>
+                </div>
+                <div class="col-md-5 about-grid1">
+                    <a href="single.html">
+                        <img src="~/images/group.jpg" alt="" class="img-responsive ">
+                    </a>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    
+    <!---->
+    <div class="container">
+        <div class="about-top">
+            <h3>TEAM</h3>
+            <div class="col-md1 ">
+                @if (children != null && children.Count() > 0)
+                {
+                    foreach (var child in children)
+                    {
+                        if (child.DocumentTypeAlias == "musician")
+                        {
+                            <div>
+                                @Html.Partial("_PartialMusician", new PartialIndex { Index = child })
+                            </div>
+                        }
+                    }
+                }
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <!---->
+</div>

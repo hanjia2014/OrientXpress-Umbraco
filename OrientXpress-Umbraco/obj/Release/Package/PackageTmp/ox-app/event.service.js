@@ -13,7 +13,7 @@ var http_1 = require('@angular/http');
 var EventService = (function () {
     function EventService(http) {
         this.http = http;
-        this.eventsUrl = 'api/events';
+        this.eventsUrl = '/umbraco/api/events/GetEventsOverview/?alias=event';
     }
     EventService.prototype.getEvents = function () {
         return this.http.get(this.eventsUrl).map(function (res) {

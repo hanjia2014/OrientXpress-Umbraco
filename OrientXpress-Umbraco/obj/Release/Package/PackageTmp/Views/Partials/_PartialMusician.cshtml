@@ -1,0 +1,22 @@
+﻿@using OrientXpress_Umbraco.Models;
+@inherits UmbracoViewPage<PartialIndex>
+@{
+    var title = Model.Index.GetPropertyValue<string>("title");
+    var description = Model.Index.GetPropertyValue<string>("description");
+
+    var imgId = Model.Index.GetPropertyValue<string>("photo");
+    var img = Umbraco.TypedMedia(imgId);
+    var imgUrl = img.GetPropertyValue<string>("UmbracoFile");
+}
+<div class="col-md-6 few">
+    <div class="col-md-6 about-grid2">
+        <a href="single.html">
+            <img src="@imgUrl" alt="" class="img-responsive ">
+        </a>
+    </div>
+    <div class="col-md-6 about-grid3">
+        <h6><a>@title</a></h6>
+        <p>@description</p>
+    </div>
+    <div class="clearfix"> </div>
+</div>

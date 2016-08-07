@@ -6,7 +6,7 @@
 @{
     Layout = "Master.cshtml";
     ViewBag.Title = "Home Page";
-
+    var selectedEvent = new EventViewModel();
     var events = new List<EventViewModel>();
     var children = CurrentPage.Site().Children;
     var eventsJson = string.Empty;
@@ -19,27 +19,25 @@
                 var title = child.GetPropertyValue<string>("title");
                 var date = child.GetPropertyValue<DateTime>("date");
                 var content = child.GetPropertyValue<string>("content");
-                events.Add(new EventViewModel { Title = title, Date = date, Content = "Test" });
+                events.Add(new EventViewModel { Title = title, Date = date, Content = content });
                 events.OrderByDescending(p => p.Date);
             }
         }
         eventsJson = JsonConvert.SerializeObject(events);
     }
 }
-
 @Scripts.Render("~/bundles/ox-app")
 
 <script type="text/javascript">
-        System.import('app').catch(function (err) { console.error(err); });
+    //System.import('app').catch(function (err) { console.error(err); });
 
-        jQuery(document).ready(function ($) {
-            $(".scroll").click(function (event) {
-                event.preventDefault();
-                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
-            });
+    jQuery(document).ready(function ($) {
+        $(".scroll").click(function (event) {
+            event.preventDefault();
+            $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
         });
+    });
 </script>
-
 <!--program start here-->
 <div class="program">
     <div class="container">
@@ -107,4 +105,58 @@
     </div>
 </div>
 <!--music strip end here-->
-<ox-app>Loading...</ox-app>
+@*<ox-app>Loading...</ox-app>*@
+
+<!--feature start here-->
+<div class="feature">
+    <div class="container">
+        <div class="features-main">
+            <h3>Feature Events</h3>
+            <div class="fea-grid-bottom">
+                @foreach (var evt in events)
+                {
+                    <div class="col-md-4 fea-grid">
+
+                        <h5>@evt.Date.ToShortDateString()</h5>
+                        <h4>@evt.Title</h4>
+                        <p>@evt.TruncateContent</p>
+                        <a data-toggle="modal" data-target="#eventModal" data-backdrop="static" onclick="@{selectedEvent = evt;} " data-keyboard="false">Read More</a>
+                        <div class="clearfix"> </div>
+                    </div>
+                }
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--feature end here-->
+<!-- Modal -->
+<div class="modal fade" id="eventModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title">@selectedEvent.Title</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-date">
+                    <ul>
+                        <li>
+                            <span><i class="glyphicon glyphicon-calendar"> </i> @selectedEvent.Date.ToShortDateString()</span>
+                        </li>
+                        <li>
+                            <span><i class="glyphicon glyphicon-time"> </i> @selectedEvent.Date.ToShortTimeString()</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+                <p>@selectedEvent.Content</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="@{selectedEvent = null;}">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>

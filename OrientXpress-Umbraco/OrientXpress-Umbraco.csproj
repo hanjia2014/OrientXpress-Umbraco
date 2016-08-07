@@ -377,7 +377,9 @@
     <Content Include="fonts\Roboto-Regular.ttf" />
     <Content Include="Views\LandingPage.cshtml" />
     <Content Include="Views\Gallery.cshtml" />
-    <None Include="Properties\PublishProfiles\orientxpress - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\orientxpress - FTP.pubxml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\PublishProfiles\orientxpress - Web Deploy.pubxml" />
     <Content Include="Views\Partials\_PartialMusician.cshtml" />
     <Content Include="Views\About.cshtml" />

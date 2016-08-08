@@ -6,7 +6,7 @@
 @{
     Layout = "Master.cshtml";
     ViewBag.Title = "Home Page";
-    var selectedEvent = new EventViewModel();
+
     var events = new List<EventViewModel>();
     var children = CurrentPage.Site().Children;
     var eventsJson = string.Empty;
@@ -106,57 +106,80 @@
 </div>
 <!--music strip end here-->
 @*<ox-app>Loading...</ox-app>*@
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function ($scope, $http) {
+        $scope.selectedEvent = null;
+        $http.get('/umbraco/api/events/GetEventsOverview/?alias=event').then(function (response) {
+            $scope.events = response.data;
+        });
 
-<!--feature start here-->
-<div class="feature">
-    <div class="container">
-        <div class="features-main">
-            <h3>Feature Events</h3>
-            <div class="fea-grid-bottom">
-                @foreach (var evt in events)
-                {
-                    <div class="col-md-4 fea-grid">
+        $scope.truncateContent = function (event) {
+            var maxLength = 100;
+            //trim the string to the maximum length
+            var trimmedString = event.Content.substr(0, maxLength);
+            //re-trim if we are in the middle of a word
+            trimmedString = trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" ")));
+            return trimmedString + "...";
+        };
 
-                        <h5>@evt.Date.ToShortDateString()</h5>
-                        <h4>@evt.Title</h4>
-                        <p>@evt.TruncateContent</p>
-                        <a data-toggle="modal" data-target="#eventModal" data-backdrop="static" onclick="@{selectedEvent = evt;} " data-keyboard="false">Read More</a>
-                        <div class="clearfix"> </div>
-                    </div>
-                }
-                <div class="clearfix"> </div>
+        $scope.setSelectedEvent = function (event) {
+            $scope.selectedEvent = event;
+        }
+    });
+</script>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+    <!--feature start here-->
+    <div class="feature">
+        <div class="container">
+            <div class="features-main">
+                <h3>Feature Events</h3>
+                <div class="fea-grid-bottom">
+                        <div class="col-md-4 fea-grid" ng-repeat="event in events">
+                            <h5>{{event.Date | date:'yyyy-MM-dd'}}</h5>
+                            <h4>{{event.Title}}</h4>
+                            <p>{{truncateContent(event)}}</p>
+                            <a data-toggle="modal" data-target="#eventModal" data-backdrop="static" ng-click="setSelectedEvent(event)" data-keyboard="false">Read More</a>
+                            <div class="clearfix"> </div>
+                        </div>
+                    <div class="clearfix"> </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!--feature end here-->
-<!-- Modal -->
-<div class="modal fade" id="eventModal" role="dialog">
-    <div class="modal-dialog">
+    <!--feature end here-->
+    <!-- Modal -->
+    <div class="modal fade" id="eventModal" role="dialog">
+        <div class="modal-dialog">
+            @{
         <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h2 class="modal-title">@selectedEvent.Title</h2>
-            </div>
-            <div class="modal-body">
-                <div class="modal-date">
-                    <ul>
-                        <li>
-                            <span><i class="glyphicon glyphicon-calendar"> </i> @selectedEvent.Date.ToShortDateString()</span>
-                        </li>
-                        <li>
-                            <span><i class="glyphicon glyphicon-time"> </i> @selectedEvent.Date.ToShortTimeString()</span>
-                        </li>
-                    </ul>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h2 class="modal-title">{{selectedEvent.Title}}</h2>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-date">
+                            <ul>
+                                <li>
+                                    <span><i class="glyphicon glyphicon-calendar">{{selectedEvent.Date | date:'yyyy-MM-dd'}}</i> </span>
+                                </li>
+                                <li>
+                                    <span><i class="glyphicon glyphicon-time">{{selectedEvent.Date | date:'HH:mm'}}</i></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <p>
+                            <div class="clearfix"></div>
+                        </p>
+                        <p>{{selectedEvent.Content}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="">Close</button>
+                    </div>
                 </div>
-                <div class="clearfix"></div>
-                <p>@selectedEvent.Content</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="@{selectedEvent = null;}">Close</button>
-            </div>
+            }
         </div>
-
     </div>
 </div>

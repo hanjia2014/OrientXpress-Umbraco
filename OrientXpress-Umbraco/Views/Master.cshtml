@@ -28,7 +28,7 @@
     <script src="https://npmcdn.com/zone.js@0.6.12?main=browser"></script>
     <script src="https://npmcdn.com/reflect-metadata@0.1.3"></script>
     <script src="https://npmcdn.com/systemjs@0.19.27/dist/system.src.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
 </head>
 <body>
     <div class="@bannerCls">
@@ -148,6 +148,18 @@
     </div>
     <!--footer end here-->
     </div>
+    <script type="text/javascript" language="javascript">
+        //Trace code from Google
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-44452915-1', 'orientxpress.co.nz');
+        ga('send', 'pageview');
+    </script>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

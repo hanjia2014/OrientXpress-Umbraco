@@ -1,0 +1,25 @@
+﻿@inherits UmbracoTemplatePage
+@using OrientXpress_Umbraco.Models;
+@{
+    Layout = "Master.cshtml";
+    var items = new List<Mp3Item>();
+    var Ids = CurrentPage.GetPropertyValue<string>("mp3picker");
+    var audioMedias = Ids.ToString().Split(',');
+    foreach (var id in audioMedias)
+    {
+        var audio = Umbraco.Media(id);
+        items.Add(new Mp3Item { Name = audio.Name, Url = audio.GetPropertyValue<string>("umbracoFile") });
+    }
+}
+<div class="container">
+    @foreach (var item in items)
+    {
+        <div class="row">
+            <span class="col-md-5">@item.Name</span>
+            <audio controls class="col-md-5">
+                <source src="@item.Url" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+    }
+</div>

@@ -383,6 +383,7 @@
     <None Include="Properties\PublishProfiles\orientxpress - Web Deploy.pubxml" />
     <Content Include="Views\Partials\_PartialMusician.cshtml" />
     <Content Include="Views\About.cshtml" />
+    <Content Include="Views\Demo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -497,6 +498,7 @@
     <Compile Include="App_Start\UmbracoStandardOwinStartup.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Models\EventViewModel.cs" />
+    <Compile Include="Models\Mp3Item.cs" />
     <Compile Include="Models\PartialIndex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

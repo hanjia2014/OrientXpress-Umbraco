@@ -5,12 +5,20 @@
 
     var imgIds = CurrentPage.GetPropertyValue<string>("images").Split(',');
     List<string> imgUrls = new List<string>();
-    foreach(var imgId in imgIds)
+    foreach (var imgId in imgIds)
     {
         var img = Umbraco.Media(imgId);
         var imgUrl = img.GetPropertyValue<string>("umbracoFile");
         imgUrls.Add(imgUrl);
     }
+
+
+    int i = 0;
+    var query = from s in imgUrls
+                let num = i++
+                group s by num / 3 into g
+                select g.ToArray();
+    var results = query.ToArray();
 }
 
 <script src="~/Scripts/site/jquery-1.11.0.min.js"></script>
@@ -25,26 +33,27 @@
                 <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti corrupti dolores et quas </p>
             </div>
             <div class="gallery-bottom">
-                <div class="gallery-2">
-
-                    @foreach (var imgUrl in imgUrls)
-                    {
-                        <div class="col-md-4 gallery-left">
-                            <a href="@imgUrl" rel="title" class="mask">
-                                <img src="@imgUrl" alt="" style="height:200px" class="img-responsive zoom-img">
-                            </a>
-                        </div>
-                    }
-
-                    <div class="clearfix"> </div>
-                </div>
+                @for (var rowCount = 0; rowCount < results.Length; rowCount++)
+                {
+                    var className = rowCount == 0 ? "gallery-1" : "gallery-2";
+                    <div class="@className">
+                        @foreach (var result in results[rowCount])
+                        {
+                            <div class="col-md-4 gallery-left">
+                                <a href="@result" rel="title" class="mask">
+                                    <img src="@result" alt="" style="height:200px" class="img-responsive zoom-img">
+                                </a>
+                            </div>
+                        }
+                    </div>
+                }
             </div>
         </div>
     </div>
 </div>
 <!--gallery  end here-->
 <script type="text/javascript" charset="utf-8">
-		(function ($) {
-		    $('.gallery-bottom a').Chocolat();
-		})(jQuery);
+    (function ($) {
+        $('.gallery-bottom a').Chocolat();
+    })(jQuery);
 </script>

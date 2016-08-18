@@ -1,0 +1,15 @@
+﻿@using OrientXpress_Umbraco.Models;
+@inherits UmbracoViewPage<PartialIndex>
+@{
+    var title = Model.Index.GetPropertyValue<string>("title");
+    var link = Model.Index.GetPropertyValue<string>("link");
+}
+<div class="col-md-6 few">
+    <div class="col-md-6 about-grid3">
+        <h6><a>@title</a></h6>
+        <p>
+            <iframe width="425" height="350" src="@link"></iframe>
+        </p>
+    </div>
+    <div class="clearfix"> </div>
+</div>

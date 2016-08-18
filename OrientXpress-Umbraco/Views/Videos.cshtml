@@ -1,0 +1,27 @@
+﻿@inherits UmbracoTemplatePage
+@using OrientXpress_Umbraco.Models;
+@{
+    Layout = "Master.cshtml";
+    var children = CurrentPage.Site().Children;
+}
+
+<div class="container">
+    <div class="about-top">
+        <h3>Videos</h3>
+        <div class="col-md1 ">
+            @if (children != null && children.Count() > 0)
+            {
+                foreach (var child in children)
+                {
+                    if (child.DocumentTypeAlias == "video")
+                    {
+                        <div>
+                            @Html.Partial("_PartialVideo", new PartialIndex { Index = child })
+                        </div>
+                    }
+                }
+            }
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
